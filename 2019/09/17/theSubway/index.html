@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Something about Tender</title>
+    <title>theSubway · Something about Tender</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Something about Tender</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">theSubway</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Something about Tender</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            theSubway
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "cnbolgsWork">cnbolgsWork</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">625</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/09/17</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,39 +399,60 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/04/hello-world/" >
-            
-                <span>Hello World</span>
-        </a>
-        <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="地铁线路项目需求及实践简要分析"><a href="#地铁线路项目需求及实践简要分析" class="headerlink" title="地铁线路项目需求及实践简要分析"></a>地铁线路项目需求及实践简要分析</h1><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><ol>
+<li>设计地铁线路的文件存储格式</li>
+<li>设计读取文件的命令行程序</li>
+<li>能够输出具体地铁线的所有站点</li>
+<li>能够查询两个站点间的最短路线</li>
+<li>通过code analyze</li>
+<li>进行性能检查</li>
+<li>进行单元测试</li>
+</ol>
+<h3 id="实现思考"><a href="#实现思考" class="headerlink" title="实现思考"></a>实现思考</h3><p>本次作业的最大两个任务是设计文件存储的格式，和查询两个站点的线路。  </p>
+<p>文件存储的格式的最简陋设计就是常见的sample input规定按次序输入有意义字符的模式，但是从人的理解和容易编写来说，可以使用json或者xml语言来描述地铁线路。对于我来说json便于减低我的编码难度，并且描述一段地铁线路可能更加简洁。但是xml的标签形式非常便于人类理解。本着尽可能压榨自己的劳动来体现实力的原则，我决定使用xml类似的标签语言。<br>对程序来说，地铁线路的关键是两条线路的公共节点。所以这种存储类型应该规定是否要显式的声明一个地铁站点是公共节点。或者用户只要输入每个地铁线的站点自动推测公共站点。后者除了方便使用之外也会带来一些问题，就是同名站点的会被推测为公共站点，和可能会有多个对象描述同一站点的问题。但是从现实角度来看，没有一个城市的地铁会存在相同名字的站点，而后一个问题能够从程序设计方面来规避，所以应该选择不显式声明的模式。</p>
+<p>查询线路功能用简单的图的遍历算法就能完成了，从实现后的性能考虑和我对算法实现的熟练度来说应该选择c++来完成项目。不过考虑到本次实现的功能简单，城市地铁的线路在java也能够在可接受的时间内完成，并且已经选择了xml形式的路线声明，选择java来编写项目能够使用的技术环境更完善，所以最后确定使用java来编写这次项目。<br>这也带来了额外好处，就是code analyze 和性能检查的复杂度显著减低了。</p>
 
-More info: Writing
-Run server1$ hexo server
-
-Mo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/04</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://www.tenderkun.com">Tender</a>
+            <p>原文链接：<a href="http://www.tenderkun.com/2019/09/17/theSubway/">http://www.tenderkun.com/2019/09/17/theSubway/</a>
+            <p>发表日期：<a href="http://www.tenderkun.com/2019/09/17/theSubway/">September 17th 2019, 4:54:00 pm</a>
+            <p>更新日期：<a href="http://www.tenderkun.com/2019/09/17/theSubway/">September 17th 2019, 5:46:31 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/04/hello-world/" title= "Hello World">
+                    <div class="prevTitle">Hello World</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -448,6 +530,24 @@ Mo...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#地铁线路项目需求及实践简要分析"><span class="toc-number">1.</span> <span class="toc-text">地铁线路项目需求及实践简要分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需求分析"><span class="toc-number">1.0.1.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现思考"><span class="toc-number">1.0.2.</span> <span class="toc-text">实现思考</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -584,6 +684,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
