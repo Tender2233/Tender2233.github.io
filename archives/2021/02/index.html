@@ -346,34 +346,28 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/17/theSubway/" >
+        <a class="abstract-title" href = "/2021/02/28/Errata-关于TCP-IP的四次挥手/" >
             
-                <span>theSubway</span>
+                <span>Errata:关于TCP/IP的四次挥手</span>
         </a>
         <div class="abstract-content">
-            地铁线路项目需求及实践简要分析地址：GitHub Pages(提高阅读体验)GitHub: Repo(项目地址)  
-需求分析
-设计地铁线路的文件存储格式
-设计读取文件的命令行程序
-能够输出具体地铁线的所有站点
-能够查询两个站点间的最短路线
-通过code analyze
-进行性能检查
-进行单元测试
+            起因搞计算机的平时有资料去技术博客查是非常自然的，不过国内csdn的博客质量确实堪忧。许多博客转发转发再转发，一个错误从头开始错到尾。这给需要资源的人带来很大的问题。Errata系列专门写一下勘误，顺便方便自己查询。  
+错误点 和 勘误博文链接
 
-实现思考本次作业的最大两个任务是设计文件存储的格式，和查询两个站点的线路。  
-文件存储的格式的最简陋设计就是常见的sample input规定按次序输入有意义字符的模式，但是从人的理解和容易编写来说，可以使用json或者xml语言来描述地铁线路。对于我来说json便于减低我的编码难度，并且...
+首先的错误呢是这个FIN标志位，该标志位代表这个tcp包是用来关闭一个连接的。所以如果是想要关闭连接，直接置1就可以了。  
+第二个错误是回发的Ack，这里的ack代表确认码，应该是发来的包的seq+1，所以Client第一次发送的包应当是 FIN=1 Seq=M,Server第一次回发的包应当是Ack=M+1,ACK=1
+其他的一些总结简单...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/17</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/28</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "cnbolgsWork">cnbolgsWork</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Errata">Errata</a>
     
 </div>
             
