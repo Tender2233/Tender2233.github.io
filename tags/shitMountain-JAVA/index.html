@@ -346,28 +346,24 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/02/28/Errata-关于TCP-IP的四次挥手/" >
+        <a class="abstract-title" href = "/2020/05/29/祖传代码-JAVA做md5/" >
             
-                <span>Errata:关于TCP/IP的四次挥手</span>
+                <span>祖传代码-JAVA做md5</span>
         </a>
         <div class="abstract-content">
-            起因搞计算机的平时有资料去技术博客查是非常自然的，不过国内csdn的博客质量确实堪忧。许多博客转发转发再转发，一个错误从头开始错到尾。这给需要资源的人带来很大的问题。Errata系列专门写一下勘误，顺便方便自己查询。  
-错误点 和 勘误博文链接
-
-首先的错误呢是这个FIN标志位，该标志位代表这个tcp包是用来关闭一个连接的。所以如果是想要关闭连接，直接置1就可以了。  
-第二个错误是回发的Ack，这里的ack代表确认码，应该是发来的包的seq+1，所以Client第一次发送的包应当是 FIN=1 Seq=M,Server第一次回发的包应当是Ack=M+1,ACK=1
-其他的一些总结简单...
+            祖传代码-JAVA做md5这篇文章是shitMountain这个tag的开端，如你所见，祖传代码的tag是屎山。这是为了警示我不要把自己写的贼烂的代码到处paste，只是做一个收集整理，不要学了就忘掉。  
+代码部分12345678910111213141516import java.math.BigInteger;import java.security.MessageDigest;import java.security.NoSuchAlgorithmException;public class MD5 &#123;	public static String encrypt(Stri...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/28</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/29</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Errata">Errata</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "shitMountain JAVA">shitMountain JAVA</a>
     
 </div>
             
@@ -754,6 +750,12 @@
         <span class="sidebar-tag-name" data-tags="疑难杂症"><span class="iconfont-archer">&#xe606;</span>疑难杂症</span>
     
         <span class="sidebar-tag-name" data-tags="shitMountain"><span class="iconfont-archer">&#xe606;</span>shitMountain</span>
+    
+        <span class="sidebar-tag-name" data-tags="Errata JAVA"><span class="iconfont-archer">&#xe606;</span>Errata JAVA</span>
+    
+        <span class="sidebar-tag-name" data-tags="shitMountain JAVA"><span class="iconfont-archer">&#xe606;</span>shitMountain JAVA</span>
+    
+        <span class="sidebar-tag-name" data-tags="疑难杂症 JAVA"><span class="iconfont-archer">&#xe606;</span>疑难杂症 JAVA</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
