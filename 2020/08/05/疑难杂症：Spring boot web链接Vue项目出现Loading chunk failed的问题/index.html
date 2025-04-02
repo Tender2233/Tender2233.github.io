@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Tender">
+
+
+
+
+
+
+
+<title>疑难杂症：Spring boot web链接Vue项目出现Loading chunk failed的问题 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Tender
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="/js/menu.js"></script>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/JAVA/">
+                            JAVA
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">
+                            疑难杂症
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                疑难杂症：Spring boot web链接Vue项目出现Loading chunk failed的问题
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 5, 2020
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="Spring-boot-web链接Vue项目出现Loading-chunk-failed的问题"><a href="#Spring-boot-web链接Vue项目出现Loading-chunk-failed的问题" class="headerlink" title="Spring boot web链接Vue项目出现Loading chunk failed的问题"></a>Spring boot web链接Vue项目出现Loading chunk failed的问题</h1><h2 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h2><p>简单的描述一下症状<br>在一个spring boot web项目里，通过在resource文件夹加入static 和 templete来添加Vue前端项目。<br>刚开始，我在idea中运行代码一切正常。<br>但如果maven打包成jar之后，一些页面出现了Loading chunk failed的问题。简单的来说，是一个css文件不能被浏览器正确读取和解析，导致页面不能跳转。  </p>
+<h2 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h2><p>首先我要找到不能被浏览器解析的文件<br><code>chunk-4236eb87.0e433876.css</code><br>，在我这里是这个css文件。  </p>
+<p>这时我打开这个文件，发现里面竟然没有内容。</p>
+<p>此时我到js目录找对应的js文件。<br>而我这时候发现，对应同名的js文件其实是包含内容的。  </p>
+<p>那么我们就可以猜想，既然这两个文件有一一对应的问题，所以这个js文件没有需要的css格式，所以<br>前端打包得到了一个空的js文件。</p>
+<p>而浏览器检查的时候，无法解析一个空的chunk文件造成了跳转失败。  </p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>那我们的解决方法就显而易见了。  </p>
+<p>一个是前端在这个页面也指定一些css样式。  </p>
+<p>另一种就是我们手动在这个css文件中增加一个样式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fill-empty-file</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如我就是这样做的。然后将这个文件替换回resource资源目录，重新打包。<br>这个问题就解决了。</p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2021/02/28/Errata-%E5%85%B3%E4%BA%8ETCP-IP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2020/05/29/%E7%A5%96%E4%BC%A0%E4%BB%A3%E7%A0%81-JAVA%E5%81%9Amd5/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

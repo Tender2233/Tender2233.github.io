@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Tender">
+
+
+
+
+
+
+
+<title>祖传代码-JAVA做md5 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Tender
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="/js/menu.js"></script>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/JAVA/">
+                            JAVA
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/shitMountain/">
+                            shitMountain
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                祖传代码-JAVA做md5
+            
+            
+        </div>
+        <span class="post-date">
+            May 29, 2020
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="祖传代码-JAVA做md5"><a href="#祖传代码-JAVA做md5" class="headerlink" title="祖传代码-JAVA做md5"></a>祖传代码-JAVA做md5</h1><p>这篇文章是shitMountain这个tag的开端，如你所见，祖传代码的tag是屎山。这是为了警示我不要把自己写的贼烂的代码到处paste，只是做一个收集整理，不要学了就忘掉。  </p>
+<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MD5</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">encrypt</span><span class="params">(String plain)</span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			MessageDigest md= MessageDigest.getInstance(<span class="string">&quot;MD5&quot;</span>);</span><br><span class="line">			md.update(plain.getBytes(),<span class="number">0</span>,plain.length());</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="number">1</span>,md.digest()).toString(<span class="number">16</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><h3 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h3><p>这里用的包主要就是java.security中的messageDigest，从中获取一个MD5的实例。最后得到一个md5的biginteger。  </p>
+<h3 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h3><p>这个代码常常用在希望对用户的密码做一个单向加密的情况。<br>显然，在数据库或者任何地方保存用户的明文密码是不合适的，更进一步，如果没有用https，直接传输密码也是不对的。<br>所以后端在保存密码的时候做一个md5的hash是最简单的解决方法。值得一提，这个方法并不能很好的解决数据泄露的问题，最简单的，相同的密码的最后hash还是相同的，所以彩虹表能很简单的获得使用简单密码的用户的密码明文。所以使用的时候加上一个盐还是挺好的，比如把用户的id或者用户名也一起拼接来做hash。  </p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2020/08/05/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87%EF%BC%9ASpring%20boot%20web%E9%93%BE%E6%8E%A5Vue%E9%A1%B9%E7%9B%AE%E5%87%BA%E7%8E%B0Loading%20chunk%20failed%E7%9A%84%E9%97%AE%E9%A2%98/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
